@@ -19,7 +19,6 @@ public class Hashira {
         for (String fileName : fileNames) {
             Map<String, String> fileLines = readJsonFile(fileName);
 
-            // ✅ Safe parsing with .trim() to avoid NumberFormatException
             String kStr = fileLines.get("k");
             if (kStr == null) throw new IllegalArgumentException("Missing 'k' in file: " + fileName);
             int k = Integer.parseInt(kStr.trim());
@@ -77,7 +76,7 @@ public class Hashira {
         }
 
         points.sort(Comparator.comparing(p -> p.x));
-        return points.subList(0, k); // Only take k points
+        return points.subList(0, k); 
     }
 
     private static BigInteger lagrangeInterpolation(BigInteger x, List<Point> points) {
